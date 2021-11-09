@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - jitsi.messenger.schule
+    - addsit.com
     secretName: jitsi-messenger-schule-tls
   rules:
-    - host: jitsi.messenger.schule
+    - host: addsit.com
       http:
         paths:
         # only match /grafana and paths under /grafana/

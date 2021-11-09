@@ -25,7 +25,7 @@ spec:
   # at least one of DNS Name, URI, or IP address is required
   dnsNames:
   # fill in dnsName here
-  - jitsi.messenger.schule
+  - addsit.com
   # issuer references are always required
   issuerRef:
     name: letsencrypt

@@ -28,7 +28,7 @@ with Diagram(filename="jitsi_meet", direction='TB', show=False, outformat='png',
         haproxy_pods = [Pod(f"haproxy-{j}") for j in range(n_haproxy)]
         haproxy_sts >> haproxy_pods
         web_service = Service("web")
-        ingress = Ingress("jitsi.messenger.schule")
+        ingress = Ingress("addsit.com")
         ingress >> Service("haproxy") >> haproxy_pods >> web_service
 
         for k in range(n_shards):

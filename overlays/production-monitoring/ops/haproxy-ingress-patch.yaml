@@ -6,7 +6,7 @@ metadata:
 spec:
   tls:
   - hosts:
-    - jitsi.messenger.schule
+    - addsit.com
     secretName: jitsi-messenger-schule-tls
   rules:
     - host: jitsi.messenger.schule
