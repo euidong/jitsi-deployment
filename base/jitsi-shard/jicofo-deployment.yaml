@@ -29,7 +29,7 @@ spec:
             requests:
               memory: 400Mi
               cpu: 400m
-          image: jitsi/jicofo:stable-4548-1
+          image: jitsi/jicofo:stable-5076
           imagePullPolicy: Always
           readinessProbe:
             # caution: this readinessProbe tries to create a new conference and hence also fails if
@@ -41,11 +41,11 @@ spec:
             - name: XMPP_SERVER
               value: prosody
             - name: XMPP_DOMAIN
-              value: meet.jitsi
+              value: jitsi.peopleundercloud.com
             - name: XMPP_AUTH_DOMAIN
-              value: auth.meet.jitsi
+              value: auth.jitsi.peopleundercloud.com
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.meet.jitsi
+              value: internal-muc.jitsi.peopleundercloud.com
             - name: JICOFO_COMPONENT_SECRET
               valueFrom:
                 secretKeyRef:

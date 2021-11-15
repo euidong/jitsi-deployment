@@ -1,0 +1,5 @@
+bases:
+  - ../../base/ops/logging
+
+resources:
+  - elasticsearch.yaml

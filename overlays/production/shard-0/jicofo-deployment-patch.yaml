@@ -6,7 +6,13 @@ metadata:
     k8s-app: jicofo
   name: jicofo
 spec:
+  selector:
+    matchLabels:
+      app: jicofo
   template:
+    metadata:
+      labels:
+        app: jicofo
     spec:
       # avoid that pods of different shards share zone
       nodeSelector:

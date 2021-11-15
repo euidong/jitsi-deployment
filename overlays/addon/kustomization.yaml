@@ -1,0 +1,4 @@
+resources:
+  - ../../base/ops/metacontroller
+  - ../../base/ops/cert-manager
+  - ../../base/ops/reflector

@@ -7,10 +7,10 @@ spec:
   retention: 7d
   resources:
     requests:
-      memory: 5500Mi
+      memory: 550Mi
       cpu: 200m
     limits:
-      memory: 5500Mi
+      memory: 550Mi
       cpu: 200m
   storage:
     volumeClaimTemplate:

@@ -4,7 +4,14 @@ metadata:
   namespace: jitsi
   name: jvb
 spec:
+  serviceName: "jvb"
+  selector:
+    matchLabels:
+      app: jvb
   template:
+    metadata:
+      labels:
+        app: jvb
     spec:
       containers:
         - name: prometheus-exporter

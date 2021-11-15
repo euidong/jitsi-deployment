@@ -6,6 +6,9 @@ metadata:
 spec:
   minReplicas: 2
   maxReplicas: 6
+  scaleTargetRef:
+    kind: StatefulSet
+    name: jvb
   metrics:
     - type: Pods
       pods:

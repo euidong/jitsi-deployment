@@ -11,6 +11,8 @@ spec:
       shard: "1"
   template:
     spec:
+      containers:
+      - name: prosody
       # avoid that pods of different shards share zone
       nodeSelector:
         topology.kubernetes.io/zone: asia-northeast1-b

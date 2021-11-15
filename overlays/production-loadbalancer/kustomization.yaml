@@ -1,0 +1,9 @@
+bases:
+  - ../../base/ops/loadbalancer
+  - ../../base/ops/ingress-nginx
+
+resources:
+  - certificate.yaml
+
+patchesStrategicMerge:
+  - haproxy-ingress-patch.yaml

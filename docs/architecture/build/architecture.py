@@ -28,7 +28,7 @@ with Diagram(filename="jitsi_meet", direction='TB', show=False, outformat='png',
         haproxy_pods = [Pod(f"haproxy-{j}") for j in range(n_haproxy)]
         haproxy_sts >> haproxy_pods
         web_service = Service("web")
-        ingress = Ingress("addsit.com")
+        ingress = Ingress("jitsi.peopleundercloud.com")
         ingress >> Service("haproxy") >> haproxy_pods >> web_service
 
         for k in range(n_shards):
@@ -46,18 +46,16 @@ with Diagram(filename="jitsi_meet", direction='TB', show=False, outformat='png',
 
                 n_jvbs = 3
                 with Cluster(f"Jitsi Videobridge Shard-{k}"):
-                    jvb_pods = [Pod(f"shard-{k}-jvb-{i}") for i in range(n_jvbs)]
-                    jvb_services = [Service(f"shard-{k}-jvb-{i}") for i in range(n_jvbs)]
-                [jvb_services[i] >> jvb_pods[i] >> prosody_service for i in range(n_jvbs)]
-                jvb_pods << StatefulSet(f"shard-{k}-jvb") << HPA(f"shard-{k}-hpa")
+                    jvb_pods = [Pod(f"shard-{k}-jvb-{i}")
+                                for i in range(n_jvbs)]
+                    jvb_services = [
+                        Service(f"shard-{k}-jvb-{i}") for i in range(n_jvbs)]
+                [jvb_services[i] >> jvb_pods[i] >>
+                    prosody_service for i in range(n_jvbs)]
+                jvb_pods << StatefulSet(
+                    f"shard-{k}-jvb") << HPA(f"shard-{k}-hpa")
                 if k == 0:
                     users_1 >> jvb_services[0]
                 if k == 1:
                     users_2 >> jvb_services[1]
         all_users >> ingress
-
-
-
-
-
-

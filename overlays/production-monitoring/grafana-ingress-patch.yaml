@@ -8,14 +8,17 @@ metadata:
 spec:
   tls:
   - hosts:
-    - addsit.com
-    secretName: jitsi-messenger-schule-tls
+    - jitsi.peopleundercloud.com
+    secretName: jitsi-peopleundercloud-tls
   rules:
-    - host: addsit.com
+    - host: jitsi.peopleundercloud.com
       http:
         paths:
         # only match /grafana and paths under /grafana/
-        - path: /grafana(/|$)(.*)
+        - pathType: Prefix
+          path: /grafana(/|$)(.*)
           backend:
-            serviceName: grafana
-            servicePort: http
+            service:
+              name: grafana
+              port:
+                number: 80

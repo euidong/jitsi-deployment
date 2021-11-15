@@ -22,7 +22,7 @@ with Diagram(filename="jitsi_sharding", direction='TB', show=False, outformat='p
         users_2 = [Custom("user", globe_img) for _ in range(2)]
 
     with Cluster("Kubernetes Cluster"):
-        ingress = Ingress("addsit.com")
+        ingress = Ingress("jitsi.peopleundercloud.com")
         with Cluster("HAProxy"):
             n_haproxy = 2
             haproxy_pods = [Pod(f"haproxy-{i}") for i in range(n_haproxy)]

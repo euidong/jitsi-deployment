@@ -37,6 +37,7 @@ spec:
             - name: bbb-dashboards
               mountPath: /grafana-dashboard-definitions/0/bbb
               readOnly: false
+            - name: grafana-storage
           resources:
             limits:
               cpu: 600m

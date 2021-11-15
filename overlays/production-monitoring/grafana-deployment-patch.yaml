@@ -6,10 +6,16 @@ metadata:
   name: grafana
   namespace: monitoring
 spec:
+  selector:
+    matchLabels:
+      name: grafana
   template:
+    metadata:
+      labels:
+        name: grafana
     spec:
       containers:
         - name: grafana
           env:
             - name: GF_SERVER_DOMAIN
-              value: "addsit.com"
+              value: "jitsi.peopleundercloud.com"

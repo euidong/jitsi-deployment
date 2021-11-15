@@ -44,7 +44,7 @@ spec:
             requests:
               memory: 300Mi
               cpu: 300m
-          image: jitsi/prosody:stable-4548-1
+          image: jitsi/prosody:stable-5076
           imagePullPolicy: Always
           ports:
             - name: metrics
@@ -75,13 +75,13 @@ spec:
             subPath: jitsi-meet.cfg.lua
           env:
             - name: XMPP_DOMAIN
-              value: meet.jitsi
+              value: jitsi.peopleundercloud.com
             - name: XMPP_AUTH_DOMAIN
-              value: auth.meet.jitsi
+              value: auth.jitsi.peopleundercloud.com
             - name: XMPP_MUC_DOMAIN
-              value: muc.meet.jitsi
+              value: muc.jitsi.peopleundercloud.com
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.meet.jitsi
+              value: internal-muc.jitsi.peopleundercloud.com
             - name: XMPP_MUC_MODULES
               value: muc_meeting_id,muc_domain_mapper
             - name: JICOFO_COMPONENT_SECRET
@@ -138,4 +138,6 @@ spec:
                 secretKeyRef:
                   name: jitsi-config
                   key: TURNS_PORT
+            - name: PUBLIC_URL
+              value: https://jitsi.peopleundercloud.com
             

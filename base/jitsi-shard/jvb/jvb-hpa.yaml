@@ -4,6 +4,8 @@ metadata:
   namespace: jitsi
   name: jvb-hpa
 spec:
+  maxReplicas: 1
   scaleTargetRef:
+    name: jvb-hpa
     apiVersion: apps/v1
     kind: StatefulSet

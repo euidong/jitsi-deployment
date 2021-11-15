@@ -33,7 +33,7 @@ spec:
             name: jvb-shutdown
             defaultMode: 0744 # make executable
       # in case there is a long running conference on a JVB that should be shut down, give it time to finish
-      terminationGracePeriodSeconds: 2147483647
+      terminationGracePeriodSeconds: 60
       containers:
         - name: prometheus-exporter
           # sidecar container that exports stats for prometheus
@@ -47,7 +47,7 @@ spec:
             - "-videobridge-url"
             - "http://localhost:8080/colibri/stats"
         - name: jvb
-          image: jitsi/jvb:stable-4548-1
+          image: jitsi/jvb:stable-5076
           imagePullPolicy: Always
           lifecycle:
             preStop:
@@ -79,11 +79,11 @@ spec:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: XMPP_DOMAIN
-              value: meet.jitsi
+              value: jitsi.peopleundercloud.com
             - name: XMPP_AUTH_DOMAIN
-              value: auth.meet.jitsi
+              value: auth.jitsi.peopleundercloud.com
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.meet.jitsi
+              value: internal-muc.jitsi.peopleundercloud.com
             - name: JVB_STUN_SERVERS
               valueFrom:
                 secretKeyRef:
@@ -111,3 +111,5 @@ spec:
               value: jvbbrewery
             - name: TZ
               value: Europe/Berlin
+            - name: PUBLIC_URL
+              value: https://jitsi.peopleundercloud.com

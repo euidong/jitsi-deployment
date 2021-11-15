@@ -442,6 +442,8 @@ webhooks:
         namespace: ingress-nginx
         name: ingress-nginx-controller-admission
         path: /extensions/v1beta1/ingresses
+    sideEffects: None
+    admissionReviewVersions: ["v1", "v1beta1"]
 ---
 # Source: ingress-nginx/templates/admission-webhooks/job-patch/clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1

@@ -6,7 +6,13 @@ metadata:
     k8s-app: web
   name: web
 spec:
+  selector:
+    matchLabels:
+      app: web
   template:
+    metadata:
+      labels:
+        app: web
     spec:
       # avoid that pods of different shards share zone
       nodeSelector:

@@ -4,6 +4,9 @@ metadata:
   namespace: jitsi
   name: jvb-hpa
 spec:
+  minReplicas: 1
+  maxReplicas: 2
   scaleTargetRef:
+    kind: StatefulSet
     name: shard-1-jvb # needs to be manually set
 

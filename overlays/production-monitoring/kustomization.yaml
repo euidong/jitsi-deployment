@@ -1,2 +1,14 @@
+bases:
+  - ../../base/ops/monitoring
+
 resources:
-  - ops/
+  - bbb-endpoints.yaml
+  - turn-endpoints.yaml
+  - grafana-tls-secret.yaml
+  - bbb-basic-auth-secret.yaml
+
+patchesStrategicMerge:
+  - grafana-deployment-patch.yaml
+  - grafana-ingress-patch.yaml
+  - prometheus-prometheus-patch.yaml
+ 

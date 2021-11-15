@@ -3,12 +3,12 @@ set -eo pipefail
 
 #/ Usage: run_loadtest.sh [option..]
 #/ Description: Run array load test on a Jitsi Meet installation
-#/ Examples: ./run_loadtest.sh -u wolfgang.moser@woodmark.de -pw Pa$$w0rd -p 10 -j https://jitsi.dev.messenger.schule -d 180 -k ~/.ssh/id_rsa
+#/ Examples: ./run_loadtest.sh -u wolfgang.moser@woodmark.de -pw Pa$$w0rd -p 10 -j https://jitsi.dev.peopleundercloud.com -d 180 -k ~/.ssh/id_rsa
 #/ Options:
 #/   -u, --user: IONOS cloud user name
 #/   -pw, --password: IONOS cloud user password
 #/   -p, --participants: Number of video conference participants per worker
-#/   -j, --jitsi-url: URL pointing to the Jitsi installation (optional, defaults to https://jitsi.dev.messenger.schule)
+#/   -j, --jitsi-url: URL pointing to the Jitsi installation (optional, defaults to https://jitsi.dev.peopleundercloud.com)
 #/   -d, --duration: Duration of each conference in seconds
 #/   -k, --ssh-key-path: Path to the SSH private key file used for connecting to the worker nodes (optional, defaults to ~/.ssh/id_rsa)
 #/   --help: Display this help message
@@ -65,7 +65,7 @@ while [ "$#" -gt 1 ];
 done
 
 if [ -z "$jitsiUrl" ]; then
-  jitsiUrl="https://jitsi.dev.messenger.schule"
+  jitsiUrl="https://jitsi.dev.peopleundercloud.com"
 fi
 
 if [ -z "$sshKeyPath" ]; then
