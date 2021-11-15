@@ -39,13 +39,13 @@ spec:
               port: 8888
           env:
             - name: XMPP_SERVER
-              value: prosody
+              value: xmpp.peopleundercloud.com
             - name: XMPP_DOMAIN
-              value: jitsi.peopleundercloud.com
+              value: peopleundercloud.com
             - name: XMPP_AUTH_DOMAIN
-              value: auth.jitsi.peopleundercloud.com
+              value: auth.peopleundercloud.com
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.jitsi.peopleundercloud.com
+              value: internal-muc.peopleundercloud.com
             - name: JICOFO_COMPONENT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -59,7 +59,7 @@ spec:
                   name: jitsi-config
                   key: JICOFO_AUTH_PASSWORD
             - name: TZ
-              value: Europe/Berlin
+              value: Asia/Seoul
             - name: JVB_BREWERY_MUC
               value: jvbbrewery
             - name: JICOFO_ENABLE_HEALTH_CHECKS

@@ -27,7 +27,7 @@ with Diagram(filename="jitsi_meet_one_shard", direction='TB', show=False, outfor
         haproxy_pods = [Pod(f"haproxy-{j}") for j in range(n_haproxy)]
         haproxy_sts >> haproxy_pods
         web_service = Service("web")
-        ingress = Ingress("jitsi.peopleundercloud.com")
+        ingress = Ingress("peopleundercloud.com")
         ingress >> Service("haproxy") >> haproxy_pods >> web_service
 
         for k in range(n_shards):

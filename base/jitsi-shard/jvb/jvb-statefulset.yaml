@@ -73,17 +73,17 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: XMPP_SERVER
-              value: prosody
+              value: xmpp.peopleundercloud.com
             - name: DOCKER_HOST_ADDRESS
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: XMPP_DOMAIN
-              value: jitsi.peopleundercloud.com
+              value: peopleundercloud.com
             - name: XMPP_AUTH_DOMAIN
-              value: auth.jitsi.peopleundercloud.com
+              value: auth.peopleundercloud.com
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.jitsi.peopleundercloud.com
+              value: internal-muc.peopleundercloud.com
             - name: JVB_STUN_SERVERS
               valueFrom:
                 secretKeyRef:
@@ -110,6 +110,6 @@ spec:
             - name: JVB_BREWERY_MUC
               value: jvbbrewery
             - name: TZ
-              value: Europe/Berlin
+              value: Asia/Seoul
             - name: PUBLIC_URL
-              value: https://jitsi.peopleundercloud.com
+              value: https://peopleundercloud.com

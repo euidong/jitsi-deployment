@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - jitsi.peopleundercloud.com
+    - peopleundercloud.com
     secretName: jitsi-peopleundercloud-tls
   rules:
-    - host: jitsi.peopleundercloud.com
+    - host: peopleundercloud.com
       http:
         paths:
         # only match /grafana and paths under /grafana/

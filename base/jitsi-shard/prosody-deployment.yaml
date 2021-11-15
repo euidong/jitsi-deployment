@@ -75,13 +75,13 @@ spec:
             subPath: jitsi-meet.cfg.lua
           env:
             - name: XMPP_DOMAIN
-              value: jitsi.peopleundercloud.com
+              value: peopleundercloud.com
             - name: XMPP_AUTH_DOMAIN
-              value: auth.jitsi.peopleundercloud.com
+              value: auth.peopleundercloud.com
             - name: XMPP_MUC_DOMAIN
-              value: muc.jitsi.peopleundercloud.com
+              value: muc.peopleundercloud.com
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.jitsi.peopleundercloud.com
+              value: internal-muc.peopleundercloud.com
             - name: XMPP_MUC_MODULES
               value: muc_meeting_id,muc_domain_mapper
             - name: JICOFO_COMPONENT_SECRET
@@ -104,7 +104,7 @@ spec:
                   name: jitsi-config
                   key: JICOFO_AUTH_PASSWORD
             - name: TZ
-              value: Europe/Berlin
+              value: Asia/Seoul
             - name: JVB_TCP_HARVESTER_DISABLED
               value: "true"
             # activate add-ons that enrich the available stats of prosody
@@ -139,5 +139,5 @@ spec:
                   name: jitsi-config
                   key: TURNS_PORT
             - name: PUBLIC_URL
-              value: https://jitsi.peopleundercloud.com
+              value: https://peopleundercloud.com
             

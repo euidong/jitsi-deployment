@@ -323,29 +323,29 @@ data:
 
         hosts: {
             // XMPP domain.
-            domain: 'jitsi-meet.jitsi.peopleundercloud.com',
+            domain: 'jitsi-meet.peopleundercloud.com',
 
             // When using authentication, domain for guest users.
-            // anonymousdomain: 'guest.jitsi.peopleundercloud.com',
+            // anonymousdomain: 'guest.peopleundercloud.com',
 
             // Domain for authenticated users. Defaults to <domain>.
-            // authdomain: 'jitsi-meet.jitsi.peopleundercloud.com',
+            // authdomain: 'jitsi-meet.peopleundercloud.com',
 
             // Call control component (Jigasi).
-            // call_control: 'callcontrol.jitsi-meet.jitsi.peopleundercloud.com',
+            // call_control: 'callcontrol.jitsi-meet.peopleundercloud.com',
 
             // Focus component domain. Defaults to focus.<domain>.
-            // focus: 'focus.jitsi-meet.jitsi.peopleundercloud.com',
+            // focus: 'focus.jitsi-meet.peopleundercloud.com',
 
             // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-            muc: 'conference.jitsi-meet.jitsi.peopleundercloud.com'
+            muc: 'conference.jitsi-meet.peopleundercloud.com'
         },
 
         // BOSH URL. FIXME: use XEP-0156 to discover it.
-        bosh: '//jitsi-meet.jitsi.peopleundercloud.com/http-bind',
+        bosh: '//jitsi-meet.peopleundercloud.com/http-bind',
 
         // Websocket URL
-        // websocket: 'wss://jitsi-meet.jitsi.peopleundercloud.com/xmpp-websocket',
+        // websocket: 'wss://jitsi-meet.peopleundercloud.com/xmpp-websocket',
 
         // The name of client node advertised in XEP-0115 'c' stanza
         clientNode: 'http://jitsi.org/jitsimeet',
@@ -353,7 +353,7 @@ data:
         // The real JID of focus participant - can be overridden here
         // Do not change username - FIXME: Make focus username configurable
         // https://github.com/jitsi/jitsi-meet/issues/7376
-        // focusUserJid: 'focus@auth.jitsi-meet.jitsi.peopleundercloud.com',
+        // focusUserJid: 'focus@auth.jitsi-meet.peopleundercloud.com',
 
 
         // Testing / experimental features.
@@ -511,9 +511,9 @@ data:
         //     appKey: '<APP_KEY>' // Specify your app key here.
         //     // A URL to redirect the user to, after authenticating
         //     // by default uses:
-        //     // 'https://jitsi-meet.jitsi.peopleundercloud.com/static/oauth.html'
+        //     // 'https://jitsi-meet.peopleundercloud.com/static/oauth.html'
         //     redirectURI:
-        //          'https://jitsi-meet.jitsi.peopleundercloud.com/subfolder/static/oauth.html'
+        //          'https://jitsi-meet.peopleundercloud.com/subfolder/static/oauth.html'
         // },
         // When integrations like dropbox are enabled only that will be shown,
         // by enabling fileRecordingsServiceEnabled, we show both the integrations
@@ -823,7 +823,7 @@ data:
             // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
             // scriptURLs: [
             //      "libs/analytics-ga.min.js", // google-analytics
-            //      "https://jitsi.peopleundercloud.com/my-custom-analytics.js"
+            //      "https://peopleundercloud.com/my-custom-analytics.js"
             // ],
         },
 
@@ -912,10 +912,10 @@ data:
         // deploymentUrls: {
         //    // If specified a 'Help' button will be displayed in the overflow menu with a link to the specified URL for
         //    // user documentation.
-        //    userDocumentationURL: 'https://docs.jitsi.peopleundercloud.com/video-meetings.html',
+        //    userDocumentationURL: 'https://docs.peopleundercloud.com/video-meetings.html',
         //    // If specified a 'Download our apps' button will be displayed in the overflow menu with a link
         //    // to the specified URL for an app download page.
-        //    downloadAppsUrl: 'https://docs.jitsi.peopleundercloud.com/our-apps.html'
+        //    downloadAppsUrl: 'https://docs.peopleundercloud.com/our-apps.html'
         // },
 
         // Options related to the remote participant menu.
@@ -935,11 +935,11 @@ data:
             // The hex value for the colour used as background
             backgroundColor: '#fff',
             // The url for the image used as background
-            backgroundImageUrl: 'https://jitsi.peopleundercloud.com/background-img.png',
+            backgroundImageUrl: 'https://peopleundercloud.com/background-img.png',
             // The anchor url used when clicking the logo image
             logoClickUrl: 'https://example-company.org',
             // The url used for the image used as logo
-            logoImageUrl: 'https://jitsi.peopleundercloud.com/logo-img.png'
+            logoImageUrl: 'https://peopleundercloud.com/logo-img.png'
         }
         */
         // brandingDataUrl: '',
@@ -947,7 +947,7 @@ data:
         // The URL of the moderated rooms microservice, if available. If it
         // is present, a link to the service will be rendered on the welcome page,
         // otherwise the app doesn't render it.
-        // moderatedRoomServiceUrl: 'https://moderated.jitsi-meet.jitsi.peopleundercloud.com',
+        // moderatedRoomServiceUrl: 'https://moderated.jitsi-meet.peopleundercloud.com',
 
         // List of undocumented settings used in jitsi-meet
         /**

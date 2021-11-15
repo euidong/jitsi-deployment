@@ -7,5 +7,5 @@ spec:
   tls:
   - hosts:
     # fill in host here
-    - jitsi.peopleundercloud.com
+    - peopleundercloud.com
     secretName: jitsi-peopleundercloud-tls

@@ -70,18 +70,18 @@ spec:
             - name: JICOFO_AUTH_USER
               value: focus
             - name: XMPP_DOMAIN
-              value: jitsi.peopleundercloud.com
+              value: peopleundercloud.com
             - name: XMPP_AUTH_DOMAIN
-              value: auth.jitsi.peopleundercloud.com
+              value: auth.peopleundercloud.com
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.jitsi.peopleundercloud.com
+              value: internal-muc.peopleundercloud.com
             - name: XMPP_BOSH_URL_BASE
               value: http://prosody:5280
             - name: XMPP_MUC_DOMAIN
-              value: muc.jitsi.peopleundercloud.com
+              value: muc.peopleundercloud.com
             - name: TZ
-              value: Europe/Berlin
+              value: Asia/Seoul
             - name: JVB_TCP_HARVESTER_DISABLED
               value: "true"
             - name: PUBLIC_URL
-              value: https://jitsi.peopleundercloud.com
+              value: https://peopleundercloud.com
