@@ -1,6 +1,9 @@
 ```bash
+# gen secrets
+./secrets.sh .env production
+
 # install add-on
-kubectl apply -k overlays/addon
+kubectl create -k overlays/addon
 
 # run jitsi code
 kubectl apply -k overlays/production

@@ -3,6 +3,7 @@ bases:
   - ../../base/ops/ingress-nginx
 
 resources:
+  - cluster-issuer.yaml
   - certificate.yaml
 
 patchesStrategicMerge:
