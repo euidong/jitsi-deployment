@@ -42,7 +42,7 @@ spec:
             requests:
               memory: 300Mi
               cpu: 400m
-          image: jitsi/web:stable-5076
+          image: jitsi/web:stable-5870
           imagePullPolicy: Always
           readinessProbe:
             httpGet:
@@ -61,24 +61,20 @@ spec:
             mountPath: /defaults/interface_config.js
             subPath: interface_config.js
           env:
-            - name: DISABLE_HTTPS
-              value: "1"
-            - name: HTTP_PORT
-              value: "80"
             - name: XMPP_SERVER
               value: prosody
             - name: JICOFO_AUTH_USER
               value: focus
             - name: XMPP_DOMAIN
-              value: peopleundercloud.com
+              value: meet.jitsi
             - name: XMPP_AUTH_DOMAIN
-              value: auth.peopleundercloud.com
+              value: auth.meet.jitsi
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.peopleundercloud.com
+              value: internal-muc.meet.jitsi
             - name: XMPP_BOSH_URL_BASE
               value: http://prosody:5280
             - name: XMPP_MUC_DOMAIN
-              value: muc.peopleundercloud.com
+              value: muc.meet.jitsi
             - name: TZ
               value: Asia/Seoul
             - name: JVB_TCP_HARVESTER_DISABLED

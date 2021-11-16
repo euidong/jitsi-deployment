@@ -47,7 +47,7 @@ spec:
             - "-videobridge-url"
             - "http://localhost:8080/colibri/stats"
         - name: jvb
-          image: jitsi/jvb:stable-5076
+          image: jitsi/jvb:stable-5870
           imagePullPolicy: Always
           lifecycle:
             preStop:
@@ -73,17 +73,17 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: XMPP_SERVER
-              value: xmpp.peopleundercloud.com
+              value: prosody
             - name: DOCKER_HOST_ADDRESS
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: XMPP_DOMAIN
-              value: peopleundercloud.com
+              value: meet.jitsi
             - name: XMPP_AUTH_DOMAIN
-              value: auth.peopleundercloud.com
+              value: auth.meet.jitsi
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.peopleundercloud.com
+              value: internal-muc.meet.jitsi
             - name: JVB_STUN_SERVERS
               valueFrom:
                 secretKeyRef:
@@ -93,8 +93,6 @@ spec:
               value: focus
             - name: JVB_TCP_HARVESTER_DISABLED
               value: "true"
-            - name: JVB_ENABLE_APIS
-              value: colibri,rest
             - name: JVB_AUTH_USER
               value: jvb
             - name: JVB_AUTH_PASSWORD
@@ -111,5 +109,8 @@ spec:
               value: jvbbrewery
             - name: TZ
               value: Asia/Seoul
+            - name: JVB_ENABLE_APIS
+              value: colibri,rest
             - name: PUBLIC_URL
-              value: https://peopleundercloud.com
+              value: "https://peopleundercloud.com"
+            

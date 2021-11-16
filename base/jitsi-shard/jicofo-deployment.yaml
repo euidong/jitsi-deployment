@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: jitsi
   labels:
     k8s-app: jicofo
   name: jicofo
+  namespace: jitsi
 spec:
   replicas: 1 # one jicofo instance per shard
   strategy:
@@ -29,7 +29,7 @@ spec:
             requests:
               memory: 400Mi
               cpu: 400m
-          image: jitsi/jicofo:stable-5076
+          image: jitsi/jicofo:stable-5870
           imagePullPolicy: Always
           readinessProbe:
             # caution: this readinessProbe tries to create a new conference and hence also fails if
@@ -39,13 +39,15 @@ spec:
               port: 8888
           env:
             - name: XMPP_SERVER
-              value: xmpp.peopleundercloud.com
+              value: prosody
             - name: XMPP_DOMAIN
-              value: peopleundercloud.com
+              value: meet.jitsi
             - name: XMPP_AUTH_DOMAIN
-              value: auth.peopleundercloud.com
+              value: auth.meet.jitsi
+            - name: XMPP_MUC_DOMAIN
+              value: muc.meet.jitsi
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.peopleundercloud.com
+              value: internal-muc.meet.jitsi
             - name: JICOFO_COMPONENT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -64,3 +66,5 @@ spec:
               value: jvbbrewery
             - name: JICOFO_ENABLE_HEALTH_CHECKS
               value: "true"
+            - name: PUBLIC_URL
+              value: "https://peopleundercloud.com"

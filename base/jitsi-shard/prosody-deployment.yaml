@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: jitsi
   labels:
     k8s-app: prosody
   name: prosody
+  namespace: jitsi
 spec:
   replicas: 1 # one prosody instance per shard
   strategy:
@@ -44,7 +44,7 @@ spec:
             requests:
               memory: 300Mi
               cpu: 300m
-          image: jitsi/prosody:stable-5076
+          image: jitsi/prosody:stable-5870
           imagePullPolicy: Always
           ports:
             - name: metrics
@@ -75,15 +75,13 @@ spec:
             subPath: jitsi-meet.cfg.lua
           env:
             - name: XMPP_DOMAIN
-              value: peopleundercloud.com
+              value: meet.jitsi
             - name: XMPP_AUTH_DOMAIN
-              value: auth.peopleundercloud.com
+              value: auth.meet.jitsi
             - name: XMPP_MUC_DOMAIN
-              value: muc.peopleundercloud.com
+              value: muc.meet.jitsi
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.peopleundercloud.com
-            - name: XMPP_MUC_MODULES
-              value: muc_meeting_id,muc_domain_mapper
+              value: internal-muc.meet.jitsi
             - name: JICOFO_COMPONENT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -107,37 +105,37 @@ spec:
               value: Asia/Seoul
             - name: JVB_TCP_HARVESTER_DISABLED
               value: "true"
+            - name: XMPP_MUC_MODULES
+              value: muc_meeting_id,muc_domain_mapper
             # activate add-ons that enrich the available stats of prosody
             - name: GLOBAL_MODULES
               value: prometheus,measure_stanza_counts,measure_client_presence
             # config to allow exporting metrics in prometheus format by prometheus add-on
             - name: GLOBAL_CONFIG
               value: statistics = "internal";\nstatistics_interval = 15;
-            - name: TURNCREDENTIALS_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: TURNCREDENTIALS_SECRET
-            - name: TURN_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: TURN_HOST
-            - name: STUN_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: STUN_PORT
-            - name: TURN_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: TURN_PORT
-            - name: TURNS_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: TURNS_PORT
-            - name: PUBLIC_URL
-              value: https://peopleundercloud.com
+            # - name: TURNCREDENTIALS_SECRET
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: jitsi-config
+            #       key: TURNCREDENTIALS_SECRET
+            # - name: TURN_HOST
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: jitsi-config
+            #       key: TURN_HOST
+            # - name: STUN_PORT
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: jitsi-config
+            #       key: STUN_PORT
+            # - name: TURN_PORT
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: jitsi-config
+            #       key: TURN_PORT
+            # - name: TURNS_PORT
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: jitsi-config
+            #       key: TURNS_PORT
             

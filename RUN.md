@@ -6,6 +6,7 @@
 kubectl create -k overlays/addon
 
 # run jitsi code
+kubectl create namespace jitsi
 kubectl apply -k overlays/production
 
 # run jitsi loadbalancer

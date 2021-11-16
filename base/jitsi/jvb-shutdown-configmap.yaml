@@ -22,14 +22,14 @@ data:
     #       gracefully after conference count drops to 0
     #   "-s"(disabled by default) enable silent mode - no info output
     #
-    #   NOTE: script depends on the tools jq, used to parse json, and curl
+    #   NOTE: script depends on the tool jq, used to parse json
     #
-    
+
     # Initialize arguments
     hostUrl="http://localhost:8080"
     timeout=25
     verbose=1
-    
+
     # Parse arguments
     OPTIND=1
     while getopts "p:h:t:s" opt; do
@@ -46,32 +46,33 @@ data:
         s)
             verbose=0
             ;;
-        *)
-            echo "usage: $0 [-p] [-h] [-t] [-s]" >&2
-            exit 1
-            ;;
         esac
     done
     shift "$((OPTIND-1))"
-    
-    # Get PID from supervisor if no PID was provided
+
+    # Try the pid file, if no pid was provided as an argument.
+    # for systemd we use different pid file in a subfolder
     if [ "$pid" = "" ] ;then
-        pid=`s6-svstat -o pid /var/run/s6/services/jvb`
+        if [ -f /var/run/jitsi-videobridge.pid ]; then
+            pid=`cat /var/run/jitsi-videobridge.pid`
+        else
+            pid=`cat /var/run/jitsi-videobridge/jitsi-videobridge.pid`
+        fi
     fi
-    
-    # Check if PID is a number
+
+    #Check if PID is a number
     re='^[0-9]+$'
     if ! [[ $pid =~ $re ]] ; then
-       echo "error: PID is not a number" >&2; exit 1
+      echo "error: PID is not a number" >&2; exit 1
     fi
-    
+
     # Returns conference count by calling JVB REST statistics API and extracting
     # conference count from JSON stats text returned.
     function getConferenceCount {
         # Total number of conferences minus the empty conferences
         curl -s "$hostUrl/colibri/stats"| jq '.conferences - .conference_sizes[0]'
     }
-    
+
     # Prints info messages
     function printInfo {
       if [ "$verbose" == "1" ]
@@ -79,42 +80,35 @@ data:
         echo "$@"
       fi
     }
-    
+
     # Prints errors
     function printError {
       echo "$@" 1>&2
     }
-    
+
     shutdownStatus=`curl -s -o /dev/null -H "Content-Type: application/json" -d '{ "graceful-shutdown": "true" }' -w "%{http_code}" "$hostUrl/colibri/shutdown"`
     if [ "$shutdownStatus" == "200" ]
     then
       printInfo "Graceful shutdown started"
-    
-      # turn off automatic restart of JVB service
-      s6-svc -O /var/run/s6/services/jvb
-    
       confCount=`getConferenceCount`
       while [[ $confCount -gt 0 ]] ; do
         printInfo "There are still $confCount conferences"
         sleep 10
         confCount=`getConferenceCount`
       done
-    
+
       sleep 5
-    
-      jvbAvailable=`curl -s -o /dev/null -w "%{http_code}" "$hostUrl/colibri/stats"`
-      if [ "$jvbAvailable" == "200" ]
+
+      if ps -p $pid > /dev/null 2>&1
       then
         printInfo "It is still running, lets give it $timeout seconds"
         sleep $timeout
-        jvbAvailable=`curl -s -o /dev/null -w "%{http_code}" "$hostUrl/colibri/stats"`
-        if [ "$jvbAvailable" == "200" ]
+        if ps -p $pid > /dev/null 2>&1
         then
           printError "Bridge did not exit after $timeout sec - killing $pid"
+          kill $pid
         fi
       fi
-      kill $pid
-    
       # check for 3 seconds if we managed to kill
       for I in 1 2 3
       do
@@ -134,10 +128,11 @@ data:
           exit 1
         fi
       fi
+        rm -f /var/run/jitsi-videobridge.pid
+        rm -f /var/run/jitsi-videobridge/jitsi-videobridge.pid
       printInfo "Bridge shutdown OK"
       exit 0
     else
       printError "Invalid HTTP status for shutdown request: $shutdownStatus"
       exit 1
     fi
-    
