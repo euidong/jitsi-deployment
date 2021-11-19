@@ -49,39 +49,39 @@ spec:
           ports:
             - name: metrics
               containerPort: 5280
-          readinessProbe:
+          # readinessProbe:
             ## the command that is called obeys standard exit codes
-            exec:
-              command:
-                - prosodyctl
-                - --config
-                - /config/prosody.cfg.lua
-                - status
-          volumeMounts:
+            # exec:
+            #   command:
+            #     - prosodyctl
+            #     - --config
+            #     - /config/prosody.cfg.lua
+            #     - status
+          # volumeMounts:
           # add-ons that allow exporting of metrics to prometheus (mod_prometheus.lua)
           # or enrich the available stats (mod_measure_stanza_counts.lua,
           # mod_measure_client_presence.lua)
-          - name: prosody
-            mountPath: /prosody-plugins-custom/mod_prometheus.lua
-            subPath: mod_prometheus.lua
-          - name: prosody
-            mountPath: /usr/lib/prosody/modules/mod_measure_stanza_counts.lua
-            subPath: mod_measure_stanza_counts.lua
-          - name: prosody
-            mountPath: /usr/lib/prosody/modules/mod_measure_client_presence.lua
-            subPath: mod_measure_client_presence.lua
-          - name: prosody
-            mountPath: /defaults/conf.d/jitsi-meet.cfg.lua
-            subPath: jitsi-meet.cfg.lua
+          # - name: prosody
+          #   mountPath: /prosody-plugins-custom/mod_prometheus.lua
+          #   subPath: mod_prometheus.lua
+          # - name: prosody
+          #   mountPath: /usr/lib/prosody/modules/mod_measure_stanza_counts.lua
+          #   subPath: mod_measure_stanza_counts.lua
+          # - name: prosody
+          #   mountPath: /usr/lib/prosody/modules/mod_measure_client_presence.lua
+          #   subPath: mod_measure_client_presence.lua
+          # - name: prosody
+          #   mountPath: /defaults/conf.d/jitsi-meet.cfg.lua
+          #   subPath: jitsi-meet.cfg.lua
           env:
             - name: XMPP_DOMAIN
-              value: meet.jitsi
+              value: peopleundercloud.com
             - name: XMPP_AUTH_DOMAIN
-              value: auth.meet.jitsi
+              value: auth.peopleundercloud.com
             - name: XMPP_MUC_DOMAIN
-              value: muc.meet.jitsi
+              value: muc.peopleundercloud.com
             - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.meet.jitsi
+              value: internal-muc.peopleundercloud.com
             - name: JICOFO_COMPONENT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -138,4 +138,6 @@ spec:
             #     secretKeyRef:
             #       name: jitsi-config
             #       key: TURNS_PORT
+            - name: ENABLE_XMPP_WEBSOCKET
+              value: "0"
             
