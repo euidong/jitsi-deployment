@@ -75,7 +75,9 @@ spec:
             - name: XMPP_SERVER
               value: prosody
             - name: DOCKER_HOST_ADDRESS
-              value: 10.24.0.1
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: XMPP_DOMAIN
               value: peopleundercloud.com
             - name: XMPP_AUTH_DOMAIN
@@ -83,10 +85,7 @@ spec:
             - name: XMPP_INTERNAL_MUC_DOMAIN
               value: internal-muc.peopleundercloud.com
             - name: JVB_STUN_SERVERS
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: JVB_STUN_SERVERS
+              value: stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302
             - name: JICOFO_AUTH_USER
               value: focus
             - name: JVB_TCP_HARVESTER_DISABLED

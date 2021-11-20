@@ -139,4 +139,6 @@ spec:
             #       name: jitsi-config
             #       key: TURNS_PORT
             - name: ENABLE_XMPP_WEBSOCKET
-              value: "0"
+              value: "1"
+            - name: PUBLIC_URL
+              value: https://peopleundercloud.com
