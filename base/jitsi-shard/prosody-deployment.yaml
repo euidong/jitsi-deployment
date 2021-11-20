@@ -49,27 +49,27 @@ spec:
           ports:
             - name: metrics
               containerPort: 5280
-          # readinessProbe:
-            ## the command that is called obeys standard exit codes
-            # exec:
-            #   command:
-            #     - prosodyctl
-            #     - --config
-            #     - /config/prosody.cfg.lua
-            #     - status
-          # volumeMounts:
+          readinessProbe:
+            # the command that is called obeys standard exit codes
+            exec:
+              command:
+                - prosodyctl
+                - --config
+                - /config/prosody.cfg.lua
+                - status
+          volumeMounts:
           # add-ons that allow exporting of metrics to prometheus (mod_prometheus.lua)
           # or enrich the available stats (mod_measure_stanza_counts.lua,
           # mod_measure_client_presence.lua)
-          # - name: prosody
-          #   mountPath: /prosody-plugins-custom/mod_prometheus.lua
-          #   subPath: mod_prometheus.lua
-          # - name: prosody
-          #   mountPath: /usr/lib/prosody/modules/mod_measure_stanza_counts.lua
-          #   subPath: mod_measure_stanza_counts.lua
-          # - name: prosody
-          #   mountPath: /usr/lib/prosody/modules/mod_measure_client_presence.lua
-          #   subPath: mod_measure_client_presence.lua
+          - name: prosody
+            mountPath: /prosody-plugins-custom/mod_prometheus.lua
+            subPath: mod_prometheus.lua
+          - name: prosody
+            mountPath: /usr/lib/prosody/modules/mod_measure_stanza_counts.lua
+            subPath: mod_measure_stanza_counts.lua
+          - name: prosody
+            mountPath: /usr/lib/prosody/modules/mod_measure_client_presence.lua
+            subPath: mod_measure_client_presence.lua
           # - name: prosody
           #   mountPath: /defaults/conf.d/jitsi-meet.cfg.lua
           #   subPath: jitsi-meet.cfg.lua
@@ -140,4 +140,3 @@ spec:
             #       key: TURNS_PORT
             - name: ENABLE_XMPP_WEBSOCKET
               value: "0"
-            

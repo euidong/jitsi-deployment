@@ -36,6 +36,9 @@ data:
     frontend http_in
       bind *:80
       mode http
+      acl is_websocket hdr_beg(Host)                             -i ws
+      acl hdr_upgrade_websocket  hdr(Upgrade)                    -i websocket
+      acl hdr_connection_upgrade hdr(Connection)                 -i upgrade
       option forwardfor
       option http-keep-alive
       default_backend jitsi-meet
@@ -62,8 +65,6 @@ data:
       http-reuse safe
       http-request set-header Room %[urlp(room)]
       acl room_found urlp(room) -m found
-      acl hdr_connection_upgrade hdr(Connection)                 -i upgrade
-      acl hdr_upgrade_websocket  hdr(Upgrade)                    -i websocket
       stick-table type string len 128 size 2k expire 1d peers mypeers
       stick on hdr(Room) if room_found
       # _http._tcp.web.jitsi.svc.cluster.local:80 is a SRV DNS record

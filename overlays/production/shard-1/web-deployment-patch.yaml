@@ -16,7 +16,7 @@ spec:
     spec:
       # avoid that pods of different shards share zone
       nodeSelector:
-        topology.kubernetes.io/zone: asia-northeast1-b
+        topology.kubernetes.io/zone: asia-northeast3-b
       containers:
         - name: web
           env:

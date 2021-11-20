@@ -1,6 +1,5 @@
 bases:
   - ../../base/ops/loadbalancer
-  - ../../base/ops/ingress-nginx
 
 resources:
   - cluster-issuer.yaml

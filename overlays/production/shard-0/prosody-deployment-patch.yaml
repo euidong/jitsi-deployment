@@ -15,7 +15,7 @@ spec:
       - name: prosody
       # avoid that pods of different shards share zone
       nodeSelector:
-        topology.kubernetes.io/zone: asia-northeast1-a
+        topology.kubernetes.io/zone: asia-northeast3-a
     metadata:
       labels:
         shard: "0"

@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: haproxy-ingress
   namespace: jitsi
-# spec:
-#   # tls:
-#   # - hosts:
-#   #   # fill in host here
-#   #   - peopleundercloud.com
-#   #   secretName: jitsi-peopleundercloud-tls
+spec:
+  tls:
+  - hosts:
+    # fill in host here
+    - peopleundercloud.com
+    secretName: jitsi-peopleundercloud-tls
