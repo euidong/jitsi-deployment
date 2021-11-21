@@ -14,8 +14,8 @@ spec:
         - name: kibana
           resources:
             requests:
-              memory: 1500Mi
+              memory: 150Mi
               cpu: 1
             limits:
-              memory: 1500Mi
+              memory: 150Mi
               cpu: 1
