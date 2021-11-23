@@ -68,3 +68,5 @@ spec:
               value: "true"
             - name: PUBLIC_URL
               value: "https://peopleundercloud.com"
+            - name: ENABLE_OCTO
+              value: "true"

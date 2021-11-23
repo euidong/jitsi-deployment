@@ -9,6 +9,10 @@ spec:
     matchLabels:
       k8s-app: jvb
       shard: "0"
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
   template:
     metadata:
       labels:

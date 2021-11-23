@@ -110,4 +110,15 @@ spec:
               value: colibri,rest
             - name: PUBLIC_URL
               value: "https://peopleundercloud.com"
-            
+            - name: ENABLE_OCTO
+              value: "true"
+            - name: JVB_OCTO_BIND_ADDRESS
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: JVB_OCTO_PUBLIC_ADDRESS
+              valueFrom:
+                fieldRef: 
+                  fieldPath: status.podIP
+            - name: JVB_OCTO_REGION
+              value: "asia-northeast3"

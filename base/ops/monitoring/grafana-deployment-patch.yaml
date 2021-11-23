@@ -40,10 +40,10 @@ spec:
             - name: grafana-storage
           resources:
             limits:
-              cpu: 600m
-              memory: 600Mi
+              cpu: 200m
+              memory: 200Mi
             requests:
-              cpu: 600m
-              memory: 600Mi
+              cpu: 200m
+              memory: 200Mi
       securityContext:
         fsGroup: 427

@@ -86,4 +86,6 @@ spec:
             - name: HTTPS_PORT
               value: "443"
             - name: ENABLE_XMPP_WEBSOCKET
+              value: "0"
+            - name: TESTING_OCTO_PROBABILITY
               value: "1"

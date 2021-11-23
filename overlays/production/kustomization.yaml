@@ -3,4 +3,4 @@ bases:
 
 resources:
   - shard-0/
-  - shard-1/
+  # - shard-1/
