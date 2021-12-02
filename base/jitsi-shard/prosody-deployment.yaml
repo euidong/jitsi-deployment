@@ -37,13 +37,6 @@ spec:
                 path: jitsi-meet.cfg.lua
       containers:
         - name: prosody
-          resources:
-            limits:
-              memory: 300Mi
-              cpu: 300m
-            requests:
-              memory: 300Mi
-              cpu: 300m
           image: jitsi/prosody:stable-5870
           imagePullPolicy: Always
           ports:

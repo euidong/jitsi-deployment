@@ -22,13 +22,6 @@ spec:
     spec:
       containers:
         - name: jicofo
-          resources:
-            limits:
-              memory: 400Mi
-              cpu: 400m
-            requests:
-              memory: 400Mi
-              cpu: 400m
           image: jitsi/jicofo:stable-5870
           imagePullPolicy: Always
           readinessProbe:

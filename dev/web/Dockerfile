@@ -25,17 +25,13 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs git
 
 WORKDIR /web/jitsi-meet
-COPY jitsi-meet/package*.json ./
+COPY src/package*.json ./
 RUN npm install
 
-COPY jitsi-meet/ /web/jitsi-meet/
+COPY src/ /web/jitsi-meet/
 RUN cp -f /web/jitsi-meet/interface_config*.js /defaults
 RUN cp -f /web/jitsi-meet/config*.js /defaults
-RUN chmod 755 /wait-for-it.sh
-
 
 ENTRYPOINT []
 
 EXPOSE 80 443
-
-VOLUME ["/config", "/etc/letsencrypt", "/usr/share/jitsi-meet/transcripts"]

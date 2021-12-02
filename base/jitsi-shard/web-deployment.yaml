@@ -35,13 +35,6 @@ spec:
                 path: interface_config.js
       containers:
         - name: web
-          resources:
-            limits:
-              memory: 300Mi
-              cpu: 400m
-            requests:
-              memory: 300Mi
-              cpu: 400m
           image: jitsi/web:stable-5870
           imagePullPolicy: Always
           readinessProbe:

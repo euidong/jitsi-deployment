@@ -399,10 +399,6 @@ spec:
             - name: webhook-cert
               mountPath: /usr/local/certificates/
               readOnly: true
-          resources:
-            requests:
-              cpu: 100m
-              memory: 90Mi
       serviceAccountName: ingress-nginx
       terminationGracePeriodSeconds: 300
       volumes:

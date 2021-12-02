@@ -1,0 +1,13 @@
+# it depends on kube-prometheus.
+# So, if you want run independently, 
+# you must make grafana-deployment.yaml
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- custom-metrics-apiservice.yaml
+- metrics-server.yaml
+
+patchesStrategicMerge:
+- metrics-server-patch.yaml

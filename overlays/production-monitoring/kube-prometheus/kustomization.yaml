@@ -1,0 +1,9 @@
+resources:
+- ../../../base/ops/monitoring/kube-prometheus/
+- grafana-tls-secret.yaml
+- prometheus-prometheus.yaml
+- prometheus-service.yaml
+
+patchesStrategicMerge:
+- grafana-ingress-patch.yaml
+- grafana-deployment-patch.yaml

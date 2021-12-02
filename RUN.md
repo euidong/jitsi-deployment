@@ -33,7 +33,7 @@ kubectl apply -k overlays/production-loadbalancer
 
 ```bash
 # dashboard
-kubectl apply -k base/ops/dashboard
+kubectl apply -k base/ops/monitoring/dashboard
 
 # get token
 kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
@@ -49,8 +49,4 @@ kubectl create -f base/ops/prometheus-operator/prometheus-operator.yaml
 
 # run monitor code
 kubectl apply -k overlays/production-monitoring
-
-
-
-
 ```

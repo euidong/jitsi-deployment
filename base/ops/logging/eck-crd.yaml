@@ -3887,13 +3887,6 @@ spec:
               fieldPath: status.podIP
         - name: WEBHOOK_SECRET
           value: elastic-webhook-server-cert
-        resources:
-          limits:
-            cpu: 1
-            memory: 512Mi
-          requests:
-            cpu: 100m
-            memory: 150Mi
         ports:
         - containerPort: 9443
           name: https-webhook
