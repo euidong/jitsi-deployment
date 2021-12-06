@@ -5,14 +5,3 @@ metadata:
   namespace: monitoring
 spec:
   serviceAccountName: prometheus-k8s
-  retention: 7d
-  storage:
-    volumeClaimTemplate:
-      metadata:
-        name: prometheus
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        storageClassName: standard
-        resources:
-          requests:
-            storage: 500Mi

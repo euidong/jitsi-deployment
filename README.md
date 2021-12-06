@@ -50,6 +50,7 @@ To install the full setup go to either [`overlays/development`](overlays/develop
 ```bash
 $ kustomize build . | kubectl apply -f -
 ```
+
 This deploys a Jitsi setup consisting of two shards. A shard is a complete replica of a Jitsi setup that is used in
 parallel to other shards to load-balance and for high availability. More shards can be added following the documentation
 in [`docs/architecture/architecture.md`](docs/architecture/architecture.md). The setup was tested against a managed
@@ -80,12 +81,15 @@ script (locally). Results can be found in [`docs/loadtests/loadtestresults.md`](
 ## Kubernetes Dashboard Access
 
 To access the installed [Kubernetes Dashboard](https://github.com/kubernetes/dashboard) execute
+
 ```bash
 $ kubectl proxy
 ```
+
 and then go to `http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/`.
 
 The login token can be received by executing
+
 ```bash
 kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
 ```
@@ -93,11 +97,14 @@ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboar
 ## Kibana Access
 
 Kibana is not accessible from the Internet and must be forwarded to your local machine via `kubectl` by executing
+
 ```bash
 $ kubectl port-forward -n logging svc/kibana-kb-http 5601:5601
 ```
+
 After that you will be able to access Kibana via [https://localhost:5601/](https://localhost:5601/).
 The default login password (user `elastic`) can be received with
+
 ```bash
 $ kubectl get secret -n logging elasticsearch-es-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode; echo
 ```
@@ -110,3 +117,58 @@ The monitoring stack that is set up by this project is currently also used by an
 for [Big Blue Button](https://bigbluebutton.org/). Therefore, some of the files here contain configurations to monitor
 that setup. To exclude them delete all files starting with `bbb-` and remove the file names from the respective
 `kustomization.yaml` files.
+
+## Run
+
+```bash
+# gen secrets
+./secrets.sh .env production
+
+```
+
+```bash
+# install add-on
+kubectl create -k overlays/addon
+# or
+kubectl apply -k https://github.com/metacontroller/metacontroller/manifests/production
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6.0/cert-manager.yaml
+kubectl -n kube-system apply -f https://github.com/emberstack/kubernetes-reflector/releases/latest/download/reflector.yaml
+kubectl -n kube-system apply -f https://github.com/prometheus-operator/prometheus-operator/releases/latest/download/bundle.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.5/deploy/static/provider/cloud/deploy.yaml
+```
+
+```bash
+# gcloud setting
+kubectl apply -f gke/compute-address.yaml
+
+# run jitsi code
+kubectl create namespace jitsi
+kubectl apply -k overlays/production
+
+
+
+# run jitsi loadbalancer
+kubectl apply -k base/ops/ingress-nginx
+kubectl apply -k overlays/production-loadbalancer
+
+```
+
+```bash
+# dashboard
+kubectl apply -k base/ops/monitoring/dashboard
+
+# get token
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+
+# run server
+kubectl proxy
+```
+
+```bash
+# install prometheus operator
+# refer prometheus-operator
+kubectl create -f base/ops/prometheus-operator/prometheus-operator.yaml
+
+# run monitor code
+kubectl apply -k overlays/production-monitoring
+```
