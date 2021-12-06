@@ -9,7 +9,7 @@ services:
     image: selenium/node-chrome:3.141.59-20200409
     volumes:
       - /dev/shm:/dev/shm
-      - ./resources:/usr/share/jitsi-meet-torture/resources
+      - ./jitsi-meet-torture/resources:/usr/share/jitsi-meet-torture/
     depends_on:
       - selenium-hub
     environment:
