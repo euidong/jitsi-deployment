@@ -3,10 +3,18 @@ FROM ${JITSI_REPO}/base
 
 COPY rootfs/ /
 
+# ENV JITSI_MEET_WEB_VERSION=1.0.4466-1
+# ENV JITSI_MEET_WEB_CONFIG_VERSION=1.0.4466-1
+ENV JITSI_MEET_WEB_VERSION=1.0.4985-1
+ENV JITSI_MEET_WEB_CONFIG_VERSION=1.0.4985-1
+
 RUN \
   apt-dpkg-wrap apt-get update && \
-  apt-dpkg-wrap apt-get install -y --allow-unauthenticated cron nginx-extras vim curl make && \
-  apt-dpkg-wrap apt-get -d install -y --allow-unauthenticated && \
+  apt-dpkg-wrap apt-get install -y --allow-unauthenticated cron nginx-extras vim curl make jitsi-meet-web=${JITSI_MEET_WEB_VERSION} && \
+  apt-dpkg-wrap apt-get -d install -y --allow-unauthenticated jitsi-meet-web-config=${JITSI_MEET_WEB_CONFIG_VERSION} && \
+  dpkg -x /var/cache/apt/archives/jitsi-meet-web-config*.deb /tmp/pkg && \
+  mv /tmp/pkg/usr/share/jitsi-meet-web-config/config.js /defaults && \
+  mv /usr/share/jitsi-meet/interface_config.js /defaults && \
   apt-cleanup && \
   rm -f /etc/nginx/conf.d/default.conf && \
   rm -rf /tmp/pkg /var/cache/apt
@@ -19,13 +27,9 @@ RUN apt-get install -y nodejs git
 WORKDIR /web/jitsi-meet
 COPY src/package*.json ./
 RUN npm install
-RUN npm install -g webpack
-RUN npm install -g webpack-cli
 
 COPY src/ /web/jitsi-meet/
-RUN cp -f /web/jitsi-meet/interface_config*.js /defaults
-RUN cp -f /web/jitsi-meet/config*.js /defaults
 ENV NODE_ENV=production
-RUN make all
+RUN make
 
 EXPOSE 80 443

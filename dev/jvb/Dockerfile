@@ -25,7 +25,7 @@ RUN cd /jitsi-videobridge/jvb && \
 
 FROM ${JITSI_REPO}/base-java
 
-ENV VIDEOBRIDGE_VERSION=2.1-376-g9f12bfe2-1
+ENV VIDEOBRIDGE_VERSION=2.1-492-g5edaf7dd-1
 
 RUN \
   apt-dpkg-wrap apt-get update && \
@@ -37,3 +37,5 @@ EXPOSE 8125/udp 8092/udp 8094 9090
 COPY rootfs/ /
 
 COPY --from=builder /jitsi-videobridge/jvb/target/jitsi-videobridge-2.1-SNAPSHOT.jar /usr/share/jitsi-videobridge/jitsi-videobridge.jar
+
+USER root
