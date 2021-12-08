@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: justicedong/jitsi-web:0.0.1
+    image: justicedong/jitsi-web:0.0.2
     env_file: .env.web
     volumes:
       - ./jitsi-config/web:/config:Z
@@ -27,7 +27,7 @@ services:
     networks:
       meet.jitsi:
   jvb:
-    image: jitsi/jicofo:stable-5870
+    image: jitsi/jvb:stable-5870
     env_file: .env.jvb
     volumes:
       - ./jitsi-config/jvb:/config:Z

@@ -1,6 +1,6 @@
-participants=8
+participants=3
 duration=1000
-jitsiUrl=https://peopleundercloud.com
+jitsiUrl=https://localhost
 
 docker-compose -f 'jitsi-meet-torture/docker-compose.yml' down
 

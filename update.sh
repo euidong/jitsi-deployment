@@ -1,8 +1,12 @@
-kubectl patch deployment shard-0-jicofo --type='json' -p='[{"op":"replace", "path":  "/spec/template/spec/containers/0/image", value: "justicedong/jvb:0.0.1"}]' -n jitsi
+echo "run update"
+kubectl patch statefulset shard-0-jvb --type='json' -p='[{"op":"replace", "path":  "/spec/template/spec/containers/0/image", value: "justicedong/jvb:0.0.1"}]' -n jitsi
+echo "update config"
+# kubectl exec -it pod/shard-0-web-57dd4cb8c8-vnb4h -n jitsi -- echo "JVB_NOW_UPDATING=true" >> /config/config.js -n jitsi
 
-sleep 1000
+sleep 1
 
-kubectl exec -it shard-0-web echo "JVB_NOW_UPDATING=true" >> /default/config.js -n jitsi
+echo "update finish"
+# kubectl exec -it pod/shard-0-web-57dd4cb8c8-vnb4h -n jitsi -- echo "JVB_NOW_UPDATING=false" >> /config/config.js -n jitsi
 
-sleep 10000
-
+echo "change config"
+echo "done..."

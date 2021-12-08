@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='https://localhost/external_api.js'></script>
+  </head>
+  <body>
+    <div id="meet"></div>
+    <script>
+      const domain = 'localhost';
+      const options = {
+          roomName: 'JitsiMeetAPIExample',
+          width: 1900,
+          height: 1000,
+          parentNode: document.querySelector('#meet')
+      };
+      const api = new JitsiMeetExternalAPI(domain, options);
+      let isUdated = false;
+
+      setInterval(() => {
+        console.log("called")
+        if (isUdated) {
+          console.log("success");
+          isUdated = false;
+          api2 = new JitsiMeetExternalAPI(domain, options);
+          api.dispose();
+        }
+      }, 1000);
+
+    </script>
+  </body>
+</html>
