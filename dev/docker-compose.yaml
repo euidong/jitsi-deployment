@@ -27,7 +27,7 @@ services:
     networks:
       meet.jitsi:
   jvb:
-    image: justicedong/jvb:0.0.2
+    image: jitsi/jvb:stable-5870
     env_file: .env.jvb
     volumes:
       - ./jitsi-config/jvb:/config:Z
@@ -36,13 +36,6 @@ services:
       - "10000:10000/udp"
     depends_on:
       - prosody
-    environment:
-      - HOST_ETC=/hostfs/etc
-      - HOST_PROC=/hostfs/proc
-      - HOST_SYS=/hostfs/sys
-      - HOST_VAR=/hostfs/var
-      - HOST_RUN=/hostfs/run
-      - HOST_MOUNT_PREFIX=/hostfs
     networks:
       meet.jitsi:
 networks:
